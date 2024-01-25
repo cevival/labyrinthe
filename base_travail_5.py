@@ -87,7 +87,7 @@ while running:
 
 
 
-        # vérification du déplacement du joueur
+        # vérification du déplacement du joueur                                    
         if not laby.hitBox(new_x, new_y):
             player_pos.x, player_pos.y = new_x, new_y
             next_move -= player_speed

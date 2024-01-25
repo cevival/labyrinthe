@@ -1,7 +1,7 @@
 # Example file showing a circle moving on screen
 import pygame
 import random
-import labyrinthe
+from labyrinthe import Labyrinthe
 # pygame setup
 pygame.init()
 
@@ -17,7 +17,7 @@ ground_color = "#EDDACF"
 grid_color = "#7F513D"
 player_color = "#9F715D"
 
-laby = labyrinthe(size[0], size[1])
+laby = Labyrinthe(size[0], size[1])
 laby.load_from_file("laby-01.csv")
 screen = pygame.display.set_mode((size[0]*tilesize, size[1]*tilesize))
 clock = pygame.time.Clock()

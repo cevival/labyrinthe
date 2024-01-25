@@ -60,7 +60,7 @@ laby = Labyrinthe(20,10)
 laby.load_from_file("laby-01.csv")
 laby.affiche()
 
-"""
+
 l1 = [1, 2, 3, 4, 5]
 l2 = [6, 7, 8, 9, 10]
 l3 = [11,12,13,14,15]
@@ -71,4 +71,3 @@ lst.append(l3)
 print(lst)
 
 print(lst[2][1])
-"""

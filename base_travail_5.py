@@ -28,7 +28,7 @@ show_pos = False
 
 keys= { "UP":0 , "DOWN":0, "LEFT":0, "RIGHT":0 }
 
-player_pos = pygame.Vector2(round(size[0]/8), round(size[1]/2))
+player_pos = pygame.Vector2(round(0), round(1))
 
 #tour de boucle, pour chaque FPS
 while running:
@@ -75,28 +75,22 @@ while running:
     next_move += dt
     # gestion des déplacements
     if next_move>0:
+        new_x, new_y = int(player_pos.x),int(player_pos.y)
         if keys['UP'] == 1:
-            player_pos.y -= 1
-            next_move = -player_speed
+            new_y -=1
         elif keys['DOWN'] == 1:
-            player_pos.y += 1
-            next_move = -player_speed
+            new_y += 1
         elif keys['LEFT'] == 1:
-            player_pos.x -= 1
-            next_move = -player_speed
+            new_x -=1
         elif keys['RIGHT'] == 1:
-            player_pos.x += 1
-            next_move = -player_speed
+            new_x += 1
+
+
 
         # vérification du déplacement du joueur
-        if player_pos.y < 0:
-            player_pos.y = 0
-        if player_pos.y >= size[1]:
-            player_pos.y = size[1]-1
-        if player_pos.x < 0:
-            player_pos.x = 0
-        if player_pos.x > size[0]-1:
-            player_pos.x = size[0]-1
+        if not laby.hitBox(new_x, new_y):
+            player_pos.x, player_pos.y = new_x, new_y
+            next_move -= player_speed
 
         if show_pos:
             print("pos: ",player_pos)

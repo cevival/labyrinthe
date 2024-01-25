@@ -3,12 +3,14 @@ import csv
 
 class Labyrinthe :
     # constructeur
-    def __init__(self, sizeX, sizeY):
+    def __init__(self, sizeX, sizeY, filesName):
         """sizeX, sizeY désignent la taille du labyrinthe sur l'axe (x,y)"""
         self.sizeX = sizeX
         self.sizeY = sizeY
         #attention création d'une matrice en Y X
         self.matrice = [ [0]* self.sizeX for _ in range(self.sizeY) ]
+        self.fn = filesName
+        self.map = []
 
     def affiche(self):
         """Sortie console du labyrinthe"""
@@ -17,7 +19,17 @@ class Labyrinthe :
                 # rappel: matrice en Y,X
                 print(self.matrice[j][i], end = "")
             print()
-        #print(self.matrice)
+
+    def readFiles(self):
+        with open(self.fn, newline='') as csvfile:
+            spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
+            for row in spamreader:
+                rowListe = [int(cell)for cell in row]
+                self.map.append(rowListe)
+    
+    def achiffeMap(self):
+        for row in self.map: 
+            print(row)
 
     def get_matrice(self):
         """renvoie la matrice associée au labyrinthe"""
@@ -39,12 +51,8 @@ class Labyrinthe :
         """Détruit un mur du labyrinthe en (i,j) sur l'axe (x,y)"""
         self.matrice[j][i]=0
 
-    with open('laby-01.csv', newline='') as csvfile:
-        spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
-        for row in spamreader:
-            print(', '.join(row))
 
-laby = Labyrinthe(12,5)
+laby = Labyrinthe(12,5,'laby-01.csv')
 laby.setXY(5,2,1)
 print(laby.getSize())
 laby.affiche()
@@ -63,3 +71,5 @@ lst.append(l3)
 print(lst)
 
 print(lst[2][1])
+laby.readFiles()
+laby.achiffeMap()

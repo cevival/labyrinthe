@@ -1,4 +1,5 @@
 import random
+import csv
 
 class Labyrinthe :
     # constructeur
@@ -38,10 +39,14 @@ class Labyrinthe :
         """Détruit un mur du labyrinthe en (i,j) sur l'axe (x,y)"""
         self.matrice[j][i]=0
 
+    with open('laby-01.csv', newline='') as csvfile:
+        spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+        for row in spamreader:
+            print(', '.join(row))
+
 laby = Labyrinthe(12,5)
 laby.setXY(5,2,1)
 print(laby.getSize())
-laby.génère()
 laby.affiche()
 
 print(laby.get_matrice())
